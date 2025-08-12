@@ -1,4 +1,23 @@
-            THESE ARE THE STEPS HOW TO COLLABORATE(MEMBERS) ON SAME PROJECT
-1.main bnda folder bna ka initial files bnata ha 
+THESE ARE THE STEPS HOW TO COLLABORATE(MEMBERS) ON SAME PROJECT
 
-2.
+                       >>>>>>[MAIN LEADER]<<<<<<
+
+1.main bnda project ka folder bna ka initial files bnata ha 
+2.then wo in sab ko add karta ha github pa with help of commands in terminal
+3.add karta han collaborators
+
+                    >>>>>>>>>[COLLABORATER WORK]<<<<<<<<
+
+after collaborators accepting invitation [go to vscode and make a separate folder and run this in terminal (1.git clone url(project link)) and they see all the initial files in folder now before adding single line of code collaborator make a personal branch for creating branch you type these lines in terminal(2.git checkout <branch/name> e.g----> git checkout mybranch) ].
+so now collaborator clone the project in own machine and also  creates own branch
+[VERY IMPORTANT]collaborator apna code usi branch ma lekhega na ka main branch ma after completing code
+collaborator us ko add kare ga commit kar ka push kar de ga yad rahe push bhi apni branch krni ha e.g(git push -u origin mybranch). 
+ab main bnda fetch kare ga aur merge kr de ga
+
+                    MAIN LEADER WORK
+>after completion collaborator work main bnda fetch kare ga for fetching run this commmand in terminal (1.git fetch) after fetching you see all the new  branches added by the collaborator
+>now you go the collaborator branch and see the changes/additional code from collaborator for moving u use (1.git checkout/switch mybranch) and after viewing u can reject or accepting work 
+>in case of accepting u go on main branch and then run (1.git merge <collaborator branch name) after merge u see all changes in main branch now after it you push this on github (2.git push origin main)
+now new code is on github and on main person machine now new code is not in collaborator machine they have its own chnages so 
+                    [COLLABORATER WORK]
+>after accepting collaborator code by leader now collaborator go in main branch open terminal and run this cmd(1.git fetch) and (2.git pull)
