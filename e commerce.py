@@ -1,1 +1,2 @@
 print("Starting")
+print("hi")
