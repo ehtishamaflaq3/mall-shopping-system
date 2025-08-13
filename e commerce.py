@@ -10,7 +10,6 @@
 # 3. Based on role → Show menu of that role.
 # 4. Perform the selected action (add item,calculate bill,update stock).
 # 5. Return to the same menu until user chooses "Exit".
-
 #                           [ADMIN SECTION]
 
 
@@ -22,3 +21,8 @@
 
 
 #                              [MAIN SECTION]
+def main():
+    while True:
+            print("ENTE")
+        role=input("ENTER YOUR ROLE:- ")
+        
