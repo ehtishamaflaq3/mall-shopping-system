@@ -12,7 +12,6 @@
 # 5. Return to the same menu until user chooses "Exit".
 #                           [ADMIN SECTION]
 
-
 #                           [CASHIER SECTION]
 
 #                           [HELPER SECTION]
@@ -24,5 +23,18 @@
 def main():
     while True:
             print("ENTE")
-        role=input("ENTER YOUR ROLE:- ")
-        
+            role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
+            if role=="admin":
+                pass
+            elif role=="cashier":
+                 pass
+            elif role=="helper":
+                 pass
+            elif role=="user":
+                 pass
+            elif role=="exit":
+                 break
+            else:
+                 print("INVALID CHOICE")
+
+main()
