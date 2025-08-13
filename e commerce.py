@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #GREAT MALL SYSTEM(CLI).
 # INSTRUCTIONS:-
 #1.ADMIN THIS PERSON HANDLE ALL THE [INVENTORY(ADD/REMOVE)]&[CASHIER(ADD/REMOVE)]&[HELPER(ADD/REMOVE)]&[REGISTERATION (ONLINE USER ACCOUNTS/)]
@@ -48,3 +49,7 @@ int (input("ENter num="))
 int(input("Enter sec no="))
 c=a+b
 print(f"Your ans is= {c}")
+=======
+print("Starting")
+print("hi")
+>>>>>>> 714b71b108c1c1f09a6559c2d715fbeea7dce657
