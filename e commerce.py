@@ -19,7 +19,13 @@
 #                           [USER SECTION]
 
 
-#                              [MAIN SECTION]
+#  
+#                             [MAIN SECTION]
+a=int(input("ENter num ="))
+b=int(input("Enter sec no ="))
+c=a+b
+print(f"Your ans is= {c}")
+
 def main():
     while True:
             print("ENTE")
@@ -38,3 +44,7 @@ def main():
                  print("INVALID CHOICE")
 
 main()
+int (input("ENter num="))
+int(input("Enter sec no="))
+c=a+b
+print(f"Your ans is= {c}")
