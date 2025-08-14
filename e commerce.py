@@ -11,6 +11,7 @@
 # 4. Perform the selected action (add item,calculate bill,update stock).
 # 5. Return to the same menu until user chooses "Exit".
 #                           [ADMIN SECTION]
+
 class Admin:
     def __init__(self,inventory,cashier,helper,user):
          self.inventory=inventory
