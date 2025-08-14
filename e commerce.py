@@ -12,25 +12,30 @@
 # 5. Return to the same menu until user chooses "Exit".
 #                           [ADMIN SECTION]
 class Admin:
+    def __init__(self,inventory,cashier,helper,user):
+         self.inventory=inventory
+         self.cashier=cashier
+         self.helper=helper
+         self.user=user
     #  -------------INVENTORY MANAGEMENT-------------
-    def add_item(self):
+    def add_item(self,item,price,stock):
          pass
-    def remo_item(self):
+    def remo_item(self,name):
          pass
     # -------------CASHIER MANAGEMENT----------------
-    def add_cashier(self):
+    def add_cashier(self,name):
          pass
-    def remo_cashier(self):
+    def remo_cashier(self,name):
          pass
     # -------------HELPER MANAGEMENT----------------
-    def add_helper(self):
+    def add_helper(self,name):
          pass
-    def remo_helper(self):
+    def remo_helper(self,name):
          pass
     # -------------ALL REGISTER USERS---------------
-    def add_users(self):
+    def add_users(self,name):
          pass
-    def remo_user(self):
+    def remo_user(self,name):
          pass
 
 #-----------------------------------------------------------------------------------
