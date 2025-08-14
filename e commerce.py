@@ -11,7 +11,29 @@
 # 4. Perform the selected action (add item,calculate bill,update stock).
 # 5. Return to the same menu until user chooses "Exit".
 #                           [ADMIN SECTION]
+class Admin:
+    #  -------------INVENTORY MANAGEMENT-------------
+    def add_item(self):
+         pass
+    def remo_item(self):
+         pass
+    # -------------CASHIER MANAGEMENT----------------
+    def add_cashier(self):
+         pass
+    def remo_cashier(self):
+         pass
+    # -------------HELPER MANAGEMENT----------------
+    def add_helper(self):
+         pass
+    def remo_helper(self):
+         pass
+    # -------------ALL REGISTER USERS---------------
+    def add_users(self):
+         pass
+    def remo_user(self):
+         pass
 
+#-----------------------------------------------------------------------------------
 #                           [CASHIER SECTION]
 
 #                           [HELPER SECTION]
