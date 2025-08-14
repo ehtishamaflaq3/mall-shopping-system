@@ -357,7 +357,6 @@ class cashier:
              print(f"Total You Have To Pay Rs: {total}")
           elif choice=="No":
             print(f"Total Amount To Pay Rs: {total}")
-            
           
      def createbill(user_item):
           total=sum(user_item)
