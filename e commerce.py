@@ -19,32 +19,41 @@ def calculateTotal(user_item):
      for item in user_item:
           total+=item*QUANTITY
           print(f"Your Total Amount is RS {total}")
+          break
 
+def applydiscount(user_item):
+     choice=input("Want to need discount: (Yes/No)")
+     if choice=="Yes":
+          applydiscount=total*0.10
+          total-=applydiscount
+          print(f"Discount Apply RS: {apply_discount}")
+          print(f"Total You Have To Pay Rs: {total}")
+     elif choice=="No":
+          print(f"Total Amount To Pay Rs: {total}")
+          break
+          
 
 #                              [HELPER SECTION]
 
 #                              [USER SECTION]
 
 
-#  
-#      
-#                              [MAIN SECTION]
+#                             [MAIN SECTION]
+def main():
+    while True:
+            print("ENTE")
+            role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
+            if role=="admin":
+                pass
+            elif role=="cashier":
+                 pass
+            elif role=="helper":
+                 pass
+            elif role=="user":
+                 pass
+            elif role=="exit":
+                 break
+            else:
+                 print("INVALID CHOICE")
 
-#def main():
- #   while True:
-  #          print("ENTER")
-   #         role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
-    #        if role=="admin":
-     #           pass
-      #      elif role=="cashier":
-       #          pass
-        #    elif role=="helper":
-         #        pass
-          #  elif role=="user":
-           #      pass
-            #elif role=="exit":
-             #    break
-            #else:
-               #  print("INVALID CHOICE")
-
-#main()
+main()
