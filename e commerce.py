@@ -320,8 +320,11 @@ class Admin:
         self.inventory[category][name]={"PRICE":price,"STOCK":stock}
         print(f"NAME: {name} PRICE: {price} STOCK: {stock} IS ADDED TO {category} CATEGORY.")
     def remo_item(self,category,name):
-         pass
-        # if category in self.inventory:
+        if category in self.inventory and name in self.inventory[categoery]:
+             del self.inventory[category][name]
+             print(f"{name} IS REMOVED FROM {category} CATEGORY.")
+        else:
+             print("ITEM NOT FOUND")
     # -------------CASHIER MANAGEMENT----------------
     def add_cashier(self,name):
          pass
