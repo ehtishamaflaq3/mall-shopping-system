@@ -40,25 +40,37 @@ class Admin:
 
 #-----------------------------------------------------------------------------------
 #                           [CASHIER SECTION]
-
-def calculateTotal(user_item):
+class cashier:
+    def calculateTotal(user_item):
      total=0
      print("Here Your Total bill listed below sir!")
      for item in user_item:
-          total+=item*QUANTITY
+          total+=item*qty
           print(f"Your Total Amount is RS {total}")
-          break
-def applydiscount(user_item):
-     choice=input("Want to need discount: (Yes/No)")
-     if choice=="Yes":
-          applydiscount=total*0.10
-          total-=applydiscount
-          print(f"Discount Apply RS: {apply_discount}")
-          print(f"Total You Have To Pay Rs: {total}")
-     elif choice=="No":
-          print(f"Total Amount To Pay Rs: {total}")
-          break
           
+
+     def applydiscount(user_item):
+          choice=input("Want to need discount: (Yes/No)")
+          if choice=="Yes":
+             applydiscount=total*0.10
+             total-=applydiscount
+             print(f"Discount Apply RS: {apply_discount}")
+             print(f"Total You Have To Pay Rs: {total}")
+          elif choice=="No":
+            print(f"Total Amount To Pay Rs: {total}")
+            
+          
+     def createbill(user_item):
+          total=sum(user_item)
+          print("Total Bill!")
+          print(f"Total Amount You Have To Pay RS: {total}")
+          choice=input("Sir Want To Need Bag: (Yes/No)")
+          if choice=="Yes":
+               total+=20
+               print(f"Total Amount You Have To Pay RS: {total}")
+          elif choice=="No":
+               print(f"Total Amount You Have To Pay RS: {total}")
+          print("Thanks For Shopping Sir!")
 #                              [HELPER SECTION]
 
 #                              [USER SECTION]
