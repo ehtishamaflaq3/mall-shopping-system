@@ -45,7 +45,38 @@ def main():
     while True:
             role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
             if role=="admin":
-                pass
+                print("=======WELLCOME TO THE ADMIN MENU========")
+                print("1. Add Inventory Item")
+                print("2. Remove Inventory Item")
+                print("3. Add Cashier")
+                print("4. Remove Cashier")
+                print("5. Add Helper")
+                print("6. Remove Helper")
+                print("7. REGISTER NEW USER")
+                print("8. REMOVE USER")
+                print("9. EXIT")
+                admin_choice=int(input("YOUR CHOICE(1-9):- "))
+                match admin_choice:
+                     case 1:
+                          pass
+                     case 2:
+                          pass
+                     case 3:
+                          pass
+                     case 4:
+                          pass
+                     case 5:
+                          pass
+                     case 6:
+                          pass
+                     case 7:
+                          pass
+                     case 8:
+                          pass
+                     case 9:
+                          break
+                     case _:
+                          print("INVALID CHOICE")
             elif role=="cashier":
                  pass
             elif role=="helper":
