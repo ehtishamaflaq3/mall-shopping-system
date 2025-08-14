@@ -347,8 +347,7 @@ class cashier:
      for item in user_item:
           total+=item*qty
           print(f"Your Total Amount is RS {total}")
-<<<<<<< HEAD
-
+          
      def applydiscount(user_item):
           choice=input("Want to need discount: (Yes/No)")
           if choice=="Yes":
@@ -358,8 +357,18 @@ class cashier:
              print(f"Total You Have To Pay Rs: {total}")
           elif choice=="No":
             print(f"Total Amount To Pay Rs: {total}")
-          break
-          
+            # break
+    def createbill(user_item):
+          total=sum(user_item)
+          print("Total Bill!")
+          print(f"Total Amount You Have To Pay RS: {total}")
+          choice=input("Sir Want To Need Bag: (Yes/No)")
+          if choice=="Yes":
+               total+=20
+               print(f"Total Amount You Have To Pay RS: {total}")
+          elif choice=="No":
+               print(f"Total Amount You Have To Pay RS: {total}")
+          print("Thanks For Shopping Sir!")          
 #                              [HELPER SECTION]
 
 #                              [USER SECTION]
