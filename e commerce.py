@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #GREAT MALL SYSTEM(CLI).
 # INSTRUCTIONS:-
 #1.ADMIN THIS PERSON HANDLE ALL THE [INVENTORY(ADD/REMOVE)]&[CASHIER(ADD/REMOVE)]&[HELPER(ADD/REMOVE)]&[REGISTERATION (ONLINE USER ACCOUNTS/)]
@@ -11,45 +10,41 @@
 # 3. Based on role → Show menu of that role.
 # 4. Perform the selected action (add item,calculate bill,update stock).
 # 5. Return to the same menu until user chooses "Exit".
-#                           [ADMIN SECTION]
+#                              [ADMIN SECTION]
 
-#                           [CASHIER SECTION]
+#                              [CASHIER SECTION]
+def calculateTotal(user_item):
+     total=0
+     print("Here Your Total bill listed below sir!")
+     for item in user_item:
+          total+=item*QUANTITY
+          print(f"Your Total Amount is RS {total}")
 
-#                           [HELPER SECTION]
 
-#                           [USER SECTION]
+#                              [HELPER SECTION]
+
+#                              [USER SECTION]
 
 
 #  
-#                             [MAIN SECTION]
-a=int(input("ENter num ="))
-b=int(input("Enter sec no ="))
-c=a+b
-print(f"Your ans is= {c}")
+#      
+#                              [MAIN SECTION]
 
-def main():
-    while True:
-            print("ENTE")
-            role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
-            if role=="admin":
-                pass
-            elif role=="cashier":
-                 pass
-            elif role=="helper":
-                 pass
-            elif role=="user":
-                 pass
-            elif role=="exit":
-                 break
-            else:
-                 print("INVALID CHOICE")
+#def main():
+ #   while True:
+  #          print("ENTER")
+   #         role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
+    #        if role=="admin":
+     #           pass
+      #      elif role=="cashier":
+       #          pass
+        #    elif role=="helper":
+         #        pass
+          #  elif role=="user":
+           #      pass
+            #elif role=="exit":
+             #    break
+            #else:
+               #  print("INVALID CHOICE")
 
-main()
-int (input("ENter num="))
-int(input("Enter sec no="))
-c=a+b
-print(f"Your ans is= {c}")
-=======
-print("Starting")
-print("hi")
->>>>>>> 714b71b108c1c1f09a6559c2d715fbeea7dce657
+#main()
