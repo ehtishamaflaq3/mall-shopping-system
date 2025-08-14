@@ -18,11 +18,9 @@
 
 #                           [USER SECTION]
 
-
-#                              [MAIN SECTION]
+#                           [MAIN SECTION]
 def main():
     while True:
-            print("ENTE")
             role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
             if role=="admin":
                 pass
@@ -36,5 +34,4 @@ def main():
                  break
             else:
                  print("INVALID CHOICE")
-
 main()
