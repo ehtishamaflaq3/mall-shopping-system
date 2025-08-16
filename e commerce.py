@@ -399,7 +399,7 @@ class Admin:
                    "NAME":name,
                    "E-MAIL":email
               }
-              print("USER WITH {} USER-ID AND WITH {} NAME IS ADDED SUCESSFULLY.")
+              print(f"USER WITH {user_id} USER-ID AND WITH {name} NAME IS ADDED SUCESSFULLY.")
     def remo_user(self):
          user_id=int(input("USER ID:- "))
          if user_id in self.user:
@@ -414,7 +414,8 @@ class Admin:
          else:
               print("===========USERS LISTS=============")
               for user_id,details in self.user.items():
-                   print(f"ID:- {user_id}=NAME:- {details["NAME"]}, EMAIL:-{details["EMAIL"]}.")
+                   print(f"ID: {user_id} = NAME: {details.get('NAME', 'N/A')}, EMAIL: {details.get('EMAIL', 'N/A')}.")
+
 
 #-----------------------------------------------------------------------------------
 #                           [CASHIER SECTION]
@@ -486,10 +487,10 @@ def main():
           u=User()
           c=Cashier()
           while True:
-               role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
+               role=input("ENTER YOUR ROLE(admin/cashier/user/exit):- ").lower()
                if role=="admin":
                     admin_password="python20"
-                    user_admin_password=int(input("PASSWORD:- "))
+                    user_admin_password=(input("PASSWORD:- "))
                     if admin_password==user_admin_password:
                          while True:
                               print("=======WELLCOME TO THE ADMIN MENU========")
