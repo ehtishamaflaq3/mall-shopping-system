@@ -303,30 +303,86 @@ inventory_all={
         "GREEN BEANS": {"PRICE": 150, "STOCK": 150}
     },
 }
+cashiers_all={
+     1:{
+          "NAME":"ABDULLAH",
+          "SHIFT":"MORINING",
+          "SALARY":"30000"
+     },
 
-cashiers_lists=[]
+}
 helpers_lists=[]
 user_all=[]
 class Admin:
-    def __init__(self,inventory,cashier,helper,user):
+    def __init__(self,inventory,cashier):
          self.inventory=inventory
          self.cashier=cashier
-         self.helper=helper
-         self.user=user
+     #     self.helper=helper
+     #     self.user=user
     #  -------------INVENTORY MANAGEMENT-------------
-    def add_item(self,category,name,price,stock):
+    def add_item(self):
+        category=input("ENTER CATEGORY NAME:- ").strip()
+        name=input("ENTER ITEM NAME:- ").strip()
+        price=int(input("PRICE:- "))
+        stock=int(input("STOCK:- "))
         if category not in self.inventory:
              self.inventory[category]={}
         self.inventory[category][name]={"PRICE":price,"STOCK":stock}
         print(f"NAME: {name} PRICE: {price} STOCK: {stock} IS ADDED TO {category} CATEGORY.")
-    def remo_item(self,category,name):
-         pass
-        # if category in self.inventory:
+    def remo_item(self):
+        category=input("CATEGORY:- ").upper().strip()
+        name=input("NAME:- ").upper().strip()
+        if category in self.inventory and name in self.inventory[category]:
+             del self.inventory[category][name]
+             print(f"{name} IS REMOVED FROM {category} CATEGORY.")
+        else:
+          print("ITEM NOT FOUND")
+    def view_all_inventory(self):
+          print("=========AVAILABLE CATEGORIES========")
+          for indx,category in enumerate(self.inventory.keys(),1):
+               print(f"{indx}.{category}")
+          view_items_choice=int(input("ENTER CATEGORY NUMBER TO VIEW:- "))
+          if view_items_choice>=1 and view_items_choice<=len(self.inventory):
+               category_list=list(self.inventory.keys())
+               category_name=category_list[view_items_choice-1]
+               print(f"--------CATEGORY NAME: {category_name}------------")
+               for item in self.inventory[category_name]:
+                    price=self.inventory[category_name][item]["PRICE"]
+                    stock=self.inventory[category_name][item]["STOCK"]
+                    print(f"NAME: {item}= PRICE:{price} ,STOCK:{stock} ")
+          else:
+               print("INVALID CHOICE.")
+     
     # -------------CASHIER MANAGEMENT----------------
-    def add_cashier(self,name):
-         pass
-    def remo_cashier(self,name):
-         pass
+    def add_cashier(self):
+         name=input("WRITE THE NEW CASHIER NAME:- ").upper()
+         cashier_id=int(input("CASHIER ID:- "))
+         shift=input("WRITE THE SHIFT:- ").upper()
+         salary=int(input("TOTAL SALARY:- ")).upper()
+         if cashier_id in self.cashier:
+              print(f"CAHIER ID {cashier_id} IS ALREADY EXISTS.")
+         else:
+              self.cashier[cashier_id]={
+                   "NAME":name,
+                   "SHIFT":shift,
+                   "SALARY":salary
+              }
+              print(f"CASHIER_ID {cashier_id}, NAME:- {name} ADDED SUCESSFULLY.")
+    def remo_cashier(self):
+         cashier_id=int(input("CASHIER ID:- "))
+         if cashier_id in self.cashier:
+           del self.cashier[cashier_id]
+           print(f"CASHIER WITH {cashier_id} ID IS REMOVED.")
+         else:
+              print("NO CASHIER IS WITH THIS ID.")
+    def view_all_cashier(self):
+         if not self.cashier:
+              print("NOT FOUND")
+              return
+         else:
+              print("============CASHIERS LISTS==========")
+              for cashier_id,details in self.cashier.items():
+               print(f"ID:- {cashier_id}=NAME:- {details["NAME"]}, SHIFT:- {details["SHIFT"]}, SALARY:- {details["SALARY"]}.")
     # -------------HELPER MANAGEMENT----------------
     def add_helper(self,name):
          pass
@@ -345,7 +401,7 @@ class cashier:
      total=0
      print("Here Your Total bill listed below sir!")
      for item in user_item:
-          total+=item*qty
+          # total+=item*qty
           print(f"Your Total Amount is RS {total}")
           
      def applydiscount(user_item):
@@ -353,7 +409,7 @@ class cashier:
           if choice=="Yes":
              applydiscount=total*0.10
              total-=applydiscount
-             print(f"Discount Apply RS: {apply_discount}")
+             print(f"Discount Apply RS: {applydiscount}")
              print(f"Total You Have To Pay Rs: {total}")
           elif choice=="No":
             print(f"Total Amount To Pay Rs: {total}")
@@ -380,6 +436,7 @@ class user:
           print("Available Category Listed Below Sir!")
           for i,category in enumerate(inventory_all):
                print(f"{i} {category}")
+<<<<<<< HEAD
 
      def view_item(self,category):
           print(f"Available Items In {category}")
@@ -440,52 +497,120 @@ while True:
           print("Invalid choice!")
 
  
+=======
+>>>>>>> main
 
+     def view_item(self,category):
+          print(f"Available Items In {category}")
+          for i,name in enumerate(inventory_all[category]):
+               print(f"{i}: {name})")
+               
+     def add_cart(self):
+          self.view_category()
+          category_choice=int(input("Which Category Number You Need Sir!: "))
+          category=list(inventory_all)[category_choice]
+          print(f"You Have Selected {category} Sir!")
+          self.view_item(category)
+          item_choice=int(input("Which Item Number You Need Sir! : "))
+          item_name=list(inventory_all[category])[item_choice]
+          print(f"You Have Selected {item_name} Sir!")
+          qty=int(input("How Much Quantity You Need Sir!"))
+          if qty<=inventory_all[category][item_name]["STOCK"]:
+               price=inventory_all[category][item_name]["PRICE"]
+               self.cart.append((category, item_name, qty, price))
+               print(f"{qty} {item_name} Added To Cart Sir!")
+          else:
+               print("Sorry Sir Stock Unavailable!")
+     def check_out(self):
+          print("Your Cart Sir!")
+          total=0
+          for category,item,qty,price in self.cart:
+               cost=qty*price
+               print(f"{item} {category} = {qty} x {price} = {cost}")
+               total+=cost
+          print(f"Your Total Bill Sir! Rs {total}")
+ 
 #                             [MAIN SECTION]
-def main():
-    while True:
-            role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ")
-            if role=="admin":
-                print("=======WELLCOME TO THE ADMIN MENU========")
-                print("1. Add Inventory Item")
-                print("2. Remove Inventory Item")
-                print("3. Add Cashier")
-                print("4. Remove Cashier")
-                print("5. Add Helper")
-                print("6. Remove Helper")
-                print("7. REGISTER NEW USER")
-                print("8. REMOVE USER")
-                print("9. EXIT")
-                admin_choice=int(input("YOUR CHOICE(1-9):- "))
-                match admin_choice:
-                     case 1:
-                          pass
-                     case 2:
-                          pass
-                     case 3:
-                          pass
-                     case 4:
-                          pass
-                     case 5:
-                          pass
-                     case 6:
-                          pass
-                     case 7:
-                          pass
-                     case 8:
-                          pass
-                     case 9:
-                          break
-                     case _:
-                          print("INVALID CHOICE")
-            elif role=="cashier":
-                 pass
-            elif role=="helper":
-                 pass
-            elif role=="user":
-                 pass
-            elif role=="exit":
-                 break
-            else:
-                 print("INVALID CHOICE")
-# main()
+     def main():
+          admi=Admin(inventory_all,cashiers_all)
+          u=user()
+          c=cashier()
+          while True:
+               role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
+               if role=="admin":
+                    while True:
+                         print("=======WELLCOME TO THE ADMIN MENU========")
+                         print("1. Add Inventory Item")
+                         print("2. Remove Inventory Item")
+                         print("3. View All Inventory")
+                         print("4. Add Cashier")
+                         print("5. Remove Cashier")
+                         print("6. View All Cashier")
+                         print("7. Add Helper")
+                         print("8. Remove Helper")
+                         print("9. View All Helper")
+                         print("10.Register New User")
+                         print("11.Remove User")
+                         print("12.View All User")
+                         print("13.EXIT")
+                         admin_choice=int(input("YOUR CHOICE(1-13):- "))
+                         match admin_choice:
+                              case 1:
+                                   admi.add_item()
+                              case 2:
+                                   admi.remo_item()
+                              case 3:
+                                   admi.view_all_inventory()
+                              case 4:
+                                   admi.add_cashier()
+                              case 5:
+                                   admi.remo_cashier()
+                              case 6:
+                                   admi.view_all_cashier()
+                              case 7:
+                                   pass
+                              case 8:
+                                   pass
+                              case 9:
+                                   pass
+                              case 10:
+                                   pass
+                              case 11:
+                                   pass
+                              case 12:
+                                   pass
+                              case 13:
+                                   break
+                              case _:
+                                   print("INVALID CHOICE")
+               elif role=="cashier":
+                    c.calculateTotal()
+                    c.createbill()
+               elif role=="helper":
+                    pass
+               elif role=="user":
+                    print("USER MENU")
+                    print("1. View Cartegory")
+                    print("2. View Item")
+                    print("3. Add Item To Cart")
+                    print("4. CheckOut Item")
+                    choice = input("Enter choice: ")
+                    if choice=="1":
+                         u.view_category()
+                    elif choice=="2":
+                         category=input("Enter Category Name: ")
+                         if category in inventory_all:
+                              u.view_item(category)
+                         else:
+                              print("Invalid Category!")
+                    elif choice=="3":
+                         u.add_cart()
+                    elif choice=="4":
+                         u.check_out()
+                    else:
+                         print("Invalid choice!")
+               elif role=="exit":
+                         break
+               else:
+                         print("INVALID CHOICE")
+     main()
