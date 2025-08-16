@@ -399,7 +399,7 @@ class Admin:
                    "NAME":name,
                    "E-MAIL":email
               }
-              print("USER WITH {} USER-ID AND WITH {} NAME IS ADDED SUCESSFULLY.")
+              print(f"USER WITH {user_id} USER-ID AND WITH {name} NAME IS ADDED SUCESSFULLY.")
     def remo_user(self):
          user_id=int(input("USER ID:- "))
          if user_id in self.user:
@@ -414,39 +414,38 @@ class Admin:
          else:
               print("===========USERS LISTS=============")
               for user_id,details in self.user.items():
-                   print(f"ID:- {user_id}=NAME:- {details["NAME"]}, EMAIL:-{details["EMAIL"]}.")
+                   print(f"ID: {user_id} = NAME: {details.get('NAME', 'N/A')}, EMAIL: {details.get('EMAIL', 'N/A')}.")
+
 
 #-----------------------------------------------------------------------------------
 #                           [CASHIER SECTION]
 class Cashier:
-    def calculateTotal(user_item):
+    def calculateTotal(self,user_items):
      total=0
      print("Here Your Total bill listed below sir!")
-     for item in user_item:
-          # total+=item*qty
-          print(f"Your Total Amount is RS {total}")
+     for category, item, qty, price in user_items:
+          cost = qty * price
+          print(f"{item} ({category}) = {qty} x {price} = {cost}")
+          total += cost
+     print(f"Your Total Amount is RS {total}")
+     return total
           
-     def applydiscount(user_item):
-          choice=input("Want to need discount: (Yes/No)")
-          if choice=="Yes":
-             applydiscount=total*0.10
-             total-=applydiscount
-             print(f"Discount Apply RS: {applydiscount}")
-             print(f"Total You Have To Pay Rs: {total}")
-          elif choice=="No":
-            print(f"Total Amount To Pay Rs: {total}")
-
-    def createbill(user_item):
-          total=sum(user_item)
+    def createbill(self,user_items, total):
           print("Total Bill!")
-          print(f"Total Amount You Have To Pay RS: {total}")
-          choice=input("Sir Want To Need Bag: (Yes/No)")
-          if choice=="Yes":
+          choice=input("Sir Want To Need Bag: (Yes/No): ").lower()
+          if choice=="yes":
                total+=20
-               print(f"Total Amount You Have To Pay RS: {total}")
-          elif choice=="No":
-               print(f"Total Amount You Have To Pay RS: {total}")
-          print("Thanks For Shopping Sir!")          
+               print(f"Bag Charge Rs 20")
+          print(f"Total Amount You Have To Pay RS: {total}")
+          print("Thanks For Shopping Sir!")   
+          return total     
+
+    def view_all_products(self):
+        print("All Products")
+        for category, items in inventory_all.items():
+            print(f"{category}:")
+            for name, details in items.items():
+                print(f"{name} Price: {details['PRICE']} | Stock: {details['STOCK']}")  
 #                              [HELPER SECTION]
 
 #                              [USER SECTION]
@@ -480,15 +479,6 @@ class User:
                print(f"{qty} {item_name} Added To Cart Sir!")
           else:
                print("Sorry Sir Stock Unavailable!")
-     def check_out(self):
-          print("Your Cart Sir!")
-          total=0
-          for category,item,qty,price in self.cart:
-               cost=qty*price
-               print(f"{item} {category} = {qty} x {price} = {cost}")
-               total+=cost
-          print(f"Your Total Bill Sir! Rs {total}")
-          return
  
 #                             [MAIN SECTION]
 def main():
@@ -496,10 +486,10 @@ def main():
           u=User()
           c=Cashier()
           while True:
-               role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
+               role=input("ENTER YOUR ROLE(admin/cashier/user/exit):- ").lower()
                if role=="admin":
                     admin_password="python20"
-                    user_admin_password=int(input("PASSWORD:- "))
+                    user_admin_password=(input("PASSWORD:- "))
                     if admin_password==user_admin_password:
                          while True:
                               print("=======WELLCOME TO THE ADMIN MENU========")
@@ -538,15 +528,31 @@ def main():
                                    case _:
                                         print("INVALID CHOICE")
                elif role=="cashier":
-                    c.calculateTotal()
-                    c.createbill()
+                    while True:
+                         print("1. View All Products")
+                         print("2. Checkout Customer")
+                         print("3  Exit Cashier Menu")
+                         choice = input("Enter choice: ")
+                         if choice =="1":
+                              c.view_all_products()
+                         elif choice =="2":
+                              if not u.cart:
+                                   print("Cart is empty")
+                              else:
+                                   total=c.calculateTotal(u.cart)
+                                   c.createbill(u.cart,total)
+                         elif choice =="3":
+                              break
+                         else:
+                              print("Invalid choice")                    
+                    
                elif role=="user":
                     while True:
                          print("USER MENU")
                          print("1. View Cartegory")
                          print("2. View Item")
                          print("3. Add Item To Cart")
-                         print("4. CheckOut Item")
+                         print("4. Exit User")
                          choice = input("Enter choice: ")
                          if choice=="1":
                               u.view_category()
@@ -559,7 +565,7 @@ def main():
                          elif choice=="3":
                               u.add_cart()
                          elif choice=="4":
-                              u.check_out()
+                              break
                          else:
                               print("Invalid choice!")
                elif role=="exit":
