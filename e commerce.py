@@ -404,12 +404,12 @@ class cashier:
           # total+=item*qty
           print(f"Your Total Amount is RS {total}")
           
-     # def applydiscount(user_item):
+     def applydiscount(user_item):
           choice=input("Want to need discount: (Yes/No)")
           if choice=="Yes":
              applydiscount=total*0.10
              total-=applydiscount
-          #    print(f"Discount Apply RS: {apply_discount}")
+             print(f"Discount Apply RS: {applydiscount}")
              print(f"Total You Have To Pay Rs: {total}")
           elif choice=="No":
             print(f"Total Amount To Pay Rs: {total}")
@@ -447,12 +447,10 @@ class user:
           category_choice=int(input("Which Category Number You Need Sir!: "))
           category=list(inventory_all)[category_choice]
           print(f"You Have Selected {category} Sir!")
-
           self.view_item(category)
           item_choice=int(input("Which Item Number You Need Sir! : "))
           item_name=list(inventory_all[category])[item_choice]
           print(f"You Have Selected {item_name} Sir!")
-
           qty=int(input("How Much Quantity You Need Sir!"))
           if qty<=inventory_all[category][item_name]["STOCK"]:
                price=inventory_all[category][item_name]["PRICE"]
@@ -460,7 +458,6 @@ class user:
                print(f"{qty} {item_name} Added To Cart Sir!")
           else:
                print("Sorry Sir Stock Unavailable!")
-
      def check_out(self):
           print("Your Cart Sir!")
           total=0
@@ -469,93 +466,88 @@ class user:
                print(f"{item} {category} = {qty} x {price} = {cost}")
                total+=cost
           print(f"Your Total Bill Sir! Rs {total}")
-
-u=user() 
-while True:
-
-     print("USER MENU")
-     print("1. View Cartegory")
-     print("2. View Item")
-     print("3. Add Item To Cart")
-     print("4. CheckOut Item")
-     choice = input("Enter choice: ")
-        
-     if choice=="1":
-          u.view_category()
-     elif choice=="2":
-          category=input("Enter Category Name: ")
-          if category in inventory_all:
-              u.view_item(category)
-          else:
-               print("Invalid Category!")
-     elif choice=="3":
-          u.add_cart()
-     elif choice=="4":
-          u.check_out()
-     else:
-          print("Invalid choice!")
-
  
-
 #                             [MAIN SECTION]
-def main():
-     admi=Admin(inventory_all,cashiers_all)
-     while True:
-            role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
-            if role=="admin":
-               while True:
-                    print("=======WELLCOME TO THE ADMIN MENU========")
-                    print("1. Add Inventory Item")
-                    print("2. Remove Inventory Item")
-                    print("3. View All Inventory")
-                    print("4. Add Cashier")
-                    print("5. Remove Cashier")
-                    print("6. View All Cashier")
-                    print("7. Add Helper")
-                    print("8. Remove Helper")
-                    print("9. View All Helper")
-                    print("10.Register New User")
-                    print("11.Remove User")
-                    print("12.View All User")
-                    print("13.EXIT")
-                    admin_choice=int(input("YOUR CHOICE(1-13):- "))
-                    match admin_choice:
-                         case 1:
-                              admi.add_item()
-                         case 2:
-                              admi.remo_item()
-                         case 3:
-                              admi.view_all_inventory()
-                         case 4:
-                              admi.add_cashier()
-                         case 5:
-                              admi.remo_cashier()
-                         case 6:
-                              admi.view_all_cashier()
-                         case 7:
-                              pass
-                         case 8:
-                              pass
-                         case 9:
-                              pass
-                         case 10:
-                              pass
-                         case 11:
-                              pass
-                         case 12:
-                              pass
-                         case 13:
-                              break
-                         case _:
-                              print("INVALID CHOICE")
-            elif role=="cashier":
-                 pass
-            elif role=="helper":
-                 pass
-            elif role=="user":
-                 pass
-            elif role=="exit":
-                 break
-            else:
-                 print("INVALID CHOICE")
-main()
+     def main():
+          admi=Admin(inventory_all,cashiers_all)
+          u=user()
+          c=cashier()
+          while True:
+               role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
+               if role=="admin":
+                    while True:
+                         print("=======WELLCOME TO THE ADMIN MENU========")
+                         print("1. Add Inventory Item")
+                         print("2. Remove Inventory Item")
+                         print("3. View All Inventory")
+                         print("4. Add Cashier")
+                         print("5. Remove Cashier")
+                         print("6. View All Cashier")
+                         print("7. Add Helper")
+                         print("8. Remove Helper")
+                         print("9. View All Helper")
+                         print("10.Register New User")
+                         print("11.Remove User")
+                         print("12.View All User")
+                         print("13.EXIT")
+                         admin_choice=int(input("YOUR CHOICE(1-13):- "))
+                         match admin_choice:
+                              case 1:
+                                   admi.add_item()
+                              case 2:
+                                   admi.remo_item()
+                              case 3:
+                                   admi.view_all_inventory()
+                              case 4:
+                                   admi.add_cashier()
+                              case 5:
+                                   admi.remo_cashier()
+                              case 6:
+                                   admi.view_all_cashier()
+                              case 7:
+                                   pass
+                              case 8:
+                                   pass
+                              case 9:
+                                   pass
+                              case 10:
+                                   pass
+                              case 11:
+                                   pass
+                              case 12:
+                                   pass
+                              case 13:
+                                   break
+                              case _:
+                                   print("INVALID CHOICE")
+               elif role=="cashier":
+                    c.calculateTotal()
+                    c.createbill()
+               elif role=="helper":
+                    pass
+               elif role=="user":
+                    print("USER MENU")
+                    print("1. View Cartegory")
+                    print("2. View Item")
+                    print("3. Add Item To Cart")
+                    print("4. CheckOut Item")
+                    choice = input("Enter choice: ")
+                    if choice=="1":
+                         u.view_category()
+                    elif choice=="2":
+                         category=input("Enter Category Name: ")
+                         if category in inventory_all:
+                              u.view_item(category)
+                         else:
+                              print("Invalid Category!")
+                    elif choice=="3":
+                         u.add_cart()
+                    elif choice=="4":
+                         u.check_out()
+                    else:
+                         print("Invalid choice!")
+               elif role=="exit":
+                         break
+               else:
+                         print("INVALID CHOICE")
+     main()
