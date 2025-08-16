@@ -311,14 +311,18 @@ cashiers_all={
      },
 
 }
-helpers_lists=[]
-user_all=[]
+users_all={
+     1:{
+          "NAME":"TAYAAB",
+          "EMAIL":"tayyab@2gmail.com"
+     },
+
+}
 class Admin:
-    def __init__(self,inventory,cashier):
+    def __init__(self,inventory,cashier,user):
          self.inventory=inventory
          self.cashier=cashier
-     #     self.helper=helper
-     #     self.user=user
+         self.user=user
     #  -------------INVENTORY MANAGEMENT-------------
     def add_item(self):
         category=input("ENTER CATEGORY NAME:- ").strip()
@@ -377,26 +381,44 @@ class Admin:
               print("NO CASHIER IS WITH THIS ID.")
     def view_all_cashier(self):
          if not self.cashier:
-              print("NOT FOUND")
+              print("EMPTY FILE")
               return
          else:
               print("============CASHIERS LISTS==========")
               for cashier_id,details in self.cashier.items():
                print(f"ID:- {cashier_id}=NAME:- {details["NAME"]}, SHIFT:- {details["SHIFT"]}, SALARY:- {details["SALARY"]}.")
-    # -------------HELPER MANAGEMENT----------------
-    def add_helper(self,name):
-         pass
-    def remo_helper(self,name):
-         pass
     # -------------ALL REGISTER USERS---------------
-    def add_users(self,name):
-         pass
-    def remo_user(self,name):
-         pass
+    def add_users(self):
+         user_id=int(input("ENTER USER ID:- "))
+         name=input("NAME:- ").upper()
+         email=str(input("EMAIL:- ")).lower()
+         if user_id in self.user:
+              print(f"USER WITH {user_id} ID IS ALREADY EXIST.")
+         else:
+              self.user[user_id]={
+                   "NAME":name,
+                   "E-MAIL":email
+              }
+              print("USER WITH {} USER-ID AND WITH {} NAME IS ADDED SUCESSFULLY.")
+    def remo_user(self):
+         user_id=int(input("USER ID:- "))
+         if user_id in self.user:
+              del self.user[user_id]
+              print(f"USER WITH {user_id} ID IS REMOVED.")
+         else:
+              print("NO USER WITH THIS ID")
+    def view_all_user(self):
+         if not self.user:
+              print("EMPTY FILE")
+              return
+         else:
+              print("===========USERS LISTS=============")
+              for user_id,details in self.user.items():
+                   print(f"ID:- {user_id}=NAME:- {details["NAME"]}, EMAIL:-{details["EMAIL"]}.")
 
 #-----------------------------------------------------------------------------------
 #                           [CASHIER SECTION]
-class cashier:
+class Cashier:
     def calculateTotal(user_item):
      total=0
      print("Here Your Total bill listed below sir!")
@@ -428,7 +450,7 @@ class cashier:
 #                              [HELPER SECTION]
 
 #                              [USER SECTION]
-class user:
+class User:
      def __init__(self):
           self.cart=[]
 
@@ -466,88 +488,82 @@ class user:
                print(f"{item} {category} = {qty} x {price} = {cost}")
                total+=cost
           print(f"Your Total Bill Sir! Rs {total}")
+          return
  
 #                             [MAIN SECTION]
-     def main():
-          admi=Admin(inventory_all,cashiers_all)
-          u=user()
-          c=cashier()
+def main():
+          admi=Admin(inventory_all,cashiers_all,users_all)
+          u=User()
+          c=Cashier()
           while True:
                role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
                if role=="admin":
-                    while True:
-                         print("=======WELLCOME TO THE ADMIN MENU========")
-                         print("1. Add Inventory Item")
-                         print("2. Remove Inventory Item")
-                         print("3. View All Inventory")
-                         print("4. Add Cashier")
-                         print("5. Remove Cashier")
-                         print("6. View All Cashier")
-                         print("7. Add Helper")
-                         print("8. Remove Helper")
-                         print("9. View All Helper")
-                         print("10.Register New User")
-                         print("11.Remove User")
-                         print("12.View All User")
-                         print("13.EXIT")
-                         admin_choice=int(input("YOUR CHOICE(1-13):- "))
-                         match admin_choice:
-                              case 1:
-                                   admi.add_item()
-                              case 2:
-                                   admi.remo_item()
-                              case 3:
-                                   admi.view_all_inventory()
-                              case 4:
-                                   admi.add_cashier()
-                              case 5:
-                                   admi.remo_cashier()
-                              case 6:
-                                   admi.view_all_cashier()
-                              case 7:
-                                   pass
-                              case 8:
-                                   pass
-                              case 9:
-                                   pass
-                              case 10:
-                                   pass
-                              case 11:
-                                   pass
-                              case 12:
-                                   pass
-                              case 13:
-                                   break
-                              case _:
-                                   print("INVALID CHOICE")
+                    admin_password="python20"
+                    user_admin_password=int(input("PASSWORD:- "))
+                    if admin_password==user_admin_password:
+                         while True:
+                              print("=======WELLCOME TO THE ADMIN MENU========")
+                              print("1. Add Inventory Item")
+                              print("2. Remove Inventory Item")
+                              print("3. View All Inventory")
+                              print("4. Add Cashier")
+                              print("5. Remove Cashier")
+                              print("6. View All Cashier")
+                              print("7.Register New User")
+                              print("8.Remove User")
+                              print("9.View All User")
+                              print("10.EXIT")
+                              admin_choice=int(input("YOUR CHOICE(1-13):- "))
+                              match admin_choice:
+                                   case 1:
+                                        admi.add_item()
+                                   case 2:
+                                        admi.remo_item()
+                                   case 3:
+                                        admi.view_all_inventory()
+                                   case 4:
+                                        admi.add_cashier()
+                                   case 5:
+                                        admi.remo_cashier()
+                                   case 6:
+                                        admi.view_all_cashier()
+                                   case 7:
+                                        admi.add_users()
+                                   case 8:
+                                        admi.remo_user()
+                                   case 9:
+                                        admi.view_all_user()
+                                   case 10:
+                                        break
+                                   case _:
+                                        print("INVALID CHOICE")
                elif role=="cashier":
                     c.calculateTotal()
                     c.createbill()
-               elif role=="helper":
-                    pass
                elif role=="user":
-                    print("USER MENU")
-                    print("1. View Cartegory")
-                    print("2. View Item")
-                    print("3. Add Item To Cart")
-                    print("4. CheckOut Item")
-                    choice = input("Enter choice: ")
-                    if choice=="1":
-                         u.view_category()
-                    elif choice=="2":
-                         category=input("Enter Category Name: ")
-                         if category in inventory_all:
-                              u.view_item(category)
+                    while True:
+                         print("USER MENU")
+                         print("1. View Cartegory")
+                         print("2. View Item")
+                         print("3. Add Item To Cart")
+                         print("4. CheckOut Item")
+                         choice = input("Enter choice: ")
+                         if choice=="1":
+                              u.view_category()
+                         elif choice=="2":
+                              category=input("Enter Category Name: ")
+                              if category in inventory_all:
+                                   u.view_item(category)
+                              else:
+                                   print("Invalid Category!")
+                         elif choice=="3":
+                              u.add_cart()
+                         elif choice=="4":
+                              u.check_out()
                          else:
-                              print("Invalid Category!")
-                    elif choice=="3":
-                         u.add_cart()
-                    elif choice=="4":
-                         u.check_out()
-                    else:
-                         print("Invalid choice!")
+                              print("Invalid choice!")
                elif role=="exit":
                          break
                else:
                          print("INVALID CHOICE")
-     main()
+main()
