@@ -413,7 +413,7 @@ class cashier:
              print(f"Total You Have To Pay Rs: {total}")
           elif choice=="No":
             print(f"Total Amount To Pay Rs: {total}")
-            # break
+
     def createbill(user_item):
           total=sum(user_item)
           print("Total Bill!")
@@ -428,12 +428,79 @@ class cashier:
 #                              [HELPER SECTION]
 
 #                              [USER SECTION]
+class user:
+     def __init__(self):
+          self.cart=[]
 
+     def view_category(self):
+          print("Available Category Listed Below Sir!")
+          for i,category in enumerate(inventory_all):
+               print(f"{i} {category}")
+
+     def view_item(self,category):
+          print(f"Available Items In {category}")
+          for i,name in enumerate(inventory_all[category]):
+               print(f"{i}: {name})")
+               
+     def add_cart(self):
+          self.view_category()
+          category_choice=int(input("Which Category Number You Need Sir!: "))
+          category=list(inventory_all)[category_choice]
+          print(f"You Have Selected {category} Sir!")
+
+          self.view_item(category)
+          item_choice=int(input("Which Item Number You Need Sir! : "))
+          item_name=list(inventory_all[category])[item_choice]
+          print(f"You Have Selected {item_name} Sir!")
+
+          qty=int(input("How Much Quantity You Need Sir!"))
+          if qty<=inventory_all[category][item_name]["STOCK"]:
+               price=inventory_all[category][item_name]["PRICE"]
+               self.cart.append((category, item_name, qty, price))
+               print(f"{qty} {item_name} Added To Cart Sir!")
+          else:
+               print("Sorry Sir Stock Unavailable!")
+
+     def check_out(self):
+          print("Your Cart Sir!")
+          total=0
+          for category,item,qty,price in self.cart:
+               cost=qty*price
+               print(f"{item} {category} = {qty} x {price} = {cost}")
+               total+=cost
+          print(f"Your Total Bill Sir! Rs {total}")
+
+u=user() 
+while True:
+
+     print("USER MENU")
+     print("1. View Cartegory")
+     print("2. View Item")
+     print("3. Add Item To Cart")
+     print("4. CheckOut Item")
+     choice = input("Enter choice: ")
+        
+     if choice=="1":
+          u.view_category()
+     elif choice=="2":
+          category=input("Enter Category Name: ")
+          if category in inventory_all:
+              u.view_item(category)
+          else:
+               print("Invalid Category!")
+     elif choice=="3":
+          u.add_cart()
+     elif choice=="4":
+          u.check_out()
+     else:
+          print("Invalid choice!")
+
+ 
 
 #                             [MAIN SECTION]
 def main():
-    admi=Admin(inventory_all,cashiers_all)
-    while True:
+     admi=Admin(inventory_all,cashiers_all)
+     while True:
             role=input("ENTER YOUR ROLE(admin/cashier/helper/user/exit):- ").lower()
             if role=="admin":
                while True:
